@@ -1,0 +1,158 @@
+#FEITO POR MIM:
+
+
+print("\n --- Lista de produtos: --- \n")
+
+lista_nome = []
+contador_nomes = 0
+
+for i in range(5):
+    nome_produtos = input("Digite o nome do produto: ")
+    lista_nome.append(nome_produtos)
+    contador_nomes += 1
+    print("Os quatros primeiros caracteres de cada produto: ", nome_produtos[0:4])
+
+contador = 0
+quantidade = int(input("Digite a quantidade de vezes que deseja verificar um nome: "))
+for i in range(quantidade):
+
+    pesquisa = input("Digite o nome do produto exatamente como registrou: ")
+
+    if pesquisa in lista_nome:
+
+     if len(nome_produtos) > 8:
+        print("O nome do produto tem mais de 8 caracteres")
+        contador += 1
+
+     else:
+        print("Tem menos de 8 caracteres")
+
+print("\n -- Relatório final: -- \n")
+
+print(contador, "produtos atendem ao critério de ter mais de 8 caracteres")
+print("Lista final de produtos: ", lista_nome)
+print("Total contabilizado: ", contador_nomes)
+
+
+
+
+#====================================================
+
+#APRIMORADO PELA IA:
+
+
+from decimal import Decimal, InvalidOperation
+
+produtos = {}
+
+
+def ler_inteiro(mensagem, minimo=0):
+    while True:
+        try:
+            valor = int(input(mensagem))
+            if valor < minimo:
+                print(f"Digite um número igual ou maior que {minimo}.")
+                continue
+            return valor
+        except ValueError:
+            print("Digite um número inteiro válido.")
+
+
+def ler_preco(mensagem):
+    while True:
+        try:
+            texto = input(mensagem).replace(",", ".")
+            valor = Decimal(texto)
+            if valor < 0:
+                print("O preço não pode ser negativo.")
+                continue
+            return valor
+        except InvalidOperation:
+            print("Digite um preço válido, por exemplo: 5,99.")
+
+
+def cadastrar_produto():
+    codigo = input("Código de barras: ").strip()
+
+    if not codigo:
+        print("O código não pode ficar vazio.")
+        return
+
+    if codigo in produtos:
+        print("Já existe um produto com esse código.")
+        return
+
+    nome = input("Nome do produto: ").strip()
+    if not nome:
+        print("O nome não pode ficar vazio.")
+        return
+
+    preco = ler_preco("Preço: R$ ")
+    estoque = ler_inteiro("Quantidade em estoque: ")
+
+    produtos[codigo] = {
+        "nome": nome,
+        "preco": preco,
+        "estoque": estoque,
+    }
+
+    print("Produto cadastrado.")
+
+
+def listar_produtos():
+    if not produtos:
+        print("Nenhum produto cadastrado.")
+        return
+
+    print("\n--- Produtos cadastrados ---")
+    for codigo, produto in produtos.items():
+        print(
+            f"Código: {codigo} | {produto['nome']} | "
+            f"R$ {produto['preco']:.2f} | "
+            f"Estoque: {produto['estoque']}"
+        )
+
+
+def vender_produto():
+    codigo = input("Leia ou digite o código do produto: ").strip()
+
+    if codigo not in produtos:
+        print("Produto não encontrado.")
+        return
+
+    produto = produtos[codigo]
+    quantidade = ler_inteiro("Quantidade a vender: ", minimo=1)
+
+    if quantidade > produto["estoque"]:
+        print(f"Estoque insuficiente. Disponível: {produto['estoque']}.")
+        return
+
+    total = produto["preco"] * quantidade
+    produto["estoque"] -= quantidade
+
+    print(f"Produto: {produto['nome']}")
+    print(f"Quantidade: {quantidade}")
+    print(f"Total da venda: R$ {total:.2f}")
+    print(f"Estoque restante: {produto['estoque']}")
+
+
+while True:
+    print("\n--- Sistema do supermercado ---")
+    print("1 - Cadastrar produto")
+    print("2 - Listar produtos")
+    print("3 - Vender produto")
+    print("0 - Sair")
+
+    opcao = input("Escolha uma opção: ").strip()
+
+    if opcao == "1":
+        cadastrar_produto()
+    elif opcao == "2":
+        listar_produtos()
+    elif opcao == "3":
+        vender_produto()
+    elif opcao == "0":
+        print("Sistema encerrado.")
+        break
+    else:
+        print("Opção inválida.")
