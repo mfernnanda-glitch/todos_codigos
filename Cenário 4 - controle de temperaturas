@@ -1,0 +1,26 @@
+#FEITO POR MIM:
+
+print("\n Controle de temperatura: \n")
+
+lista_temperatura = []
+
+for i in range(6):
+    temperatura = float(input("Digite a temperatura do laboratório: "))
+    lista_temperatura.append(temperatura)
+
+    if temperatura <= 30:
+        print("Temperatura normal")
+
+    elif temperatura > 30:
+        print("Temperatura elevada")
+
+media = sum(lista_temperatura)/len(lista_temperatura)
+
+print("\n Relatório final \n")
+
+print("As três primeiras medições: ", lista_temperatura[0:3])
+print("A média das temperatura é: ", media)
+print("A quantidade de temperaturas elevadas: ", max(lista_temperatura))
+
+
+#===============================================================================
