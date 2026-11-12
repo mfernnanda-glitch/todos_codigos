@@ -1,0 +1,21 @@
+aluna = {
+    "nome_aluna": "Maria Fernnanda",
+    "disciplina": {
+         "nome": "Matemática",
+        "notas": [10,10,10],
+    }
+}
+
+print(50*"-")
+print("\n --- Relatório final --- \n")
+
+
+print("Nome da aluna: ", aluna["nome_aluna"])
+print(50*"-")
+print("Disciplina: ", aluna["disciplina"]["nome"])
+print(50*"-")
+
+print("Notas: ", aluna["disciplina"]["notas"])
+print(sum(aluna["disciplina"]["notas"]))
+print(sum(aluna["disciplina"]["notas"])/len(aluna["disciplina"]["notas"]))
+
