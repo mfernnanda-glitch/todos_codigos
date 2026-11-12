@@ -1,0 +1,23 @@
+#TAREFA DE CASA
+
+quantidade = 0
+dici_vendas = {
+    "dias" : {
+        "quantidade vendida": quantidade,
+        "vendas": [],
+
+    }
+}
+
+while quantidade  !=0:
+    quantidade = int(input("Digite a quantidade de vendas feitas nesse dia: "))
+
+    for i in range(quantidade):
+        vendas = float(input("Digite o valor vendido em cada venda: "))
+
+        
+        if vendas >= 1000:
+            print(f"Venda superior ou igual R$ {vendas}")
+
+
+
