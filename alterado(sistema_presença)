@@ -1,0 +1,43 @@
+print("\n-- Sistema de presença escolar --\n")
+
+alunos = {}
+
+# Cadastra quatro alunos
+for i in range(4):
+    nome = input(f"{i + 1}. Digite o nome: ")
+    alunos[nome] = []
+
+# Registra cinco chamadas para cada aluno
+for nome in alunos:
+    print(f"\nFrequência de {nome}:")
+
+    for aula in range(5):
+        chamada = int(input(
+            f"{aula + 1}. Digite 1 para presença ou 0 para falta: "
+        ))
+
+        while chamada not in (0, 1):
+            chamada = int(input("Digite apenas 1 ou 0: "))
+
+        alunos[nome].append(chamada)
+
+# Exibe o relatório
+print("\n--- Relatório final ---")
+
+
+#
+for nome, chamadas in alunos.items():
+    presencas = chamadas.count(1)
+    faltas = chamadas.count(0)
+
+    print(f"\nAluno: {nome}")
+    print("Chamadas:", " ".join("P" if c == 1 else "F" for c in chamadas))
+    print("Presenças:", presencas)
+    print("Faltas:", faltas)
+
+
+    #Obs: a estrutura que está dentro do join funciona da seguinte forma:
+    #resultado = []
+    # for c in chamadas:
+    # resultado.append("P" if c == 1 else "F")
+    # texto = " ".join(resultado)
