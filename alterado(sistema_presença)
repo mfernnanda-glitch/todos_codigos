@@ -41,3 +41,66 @@ for nome, chamadas in alunos.items():
     # for c in chamadas:
     # resultado.append("P" if c == 1 else "F")
     # texto = " ".join(resultado)
+
+
+===========================BASE:==========================================
+
+print("\n -- Sistema de presença escolar --- \n")
+contador_p = 0
+contador_f = 0
+dicionario_aluno = {
+    "nome": [],
+     "chamadas": {
+     "chamada": []
+    }
+}
+
+
+
+for i in range(4): #fazer um while
+ nome = input(f"{i + 1} Digite o nome : ")
+ dicionario_aluno["nome"].append(nome)
+ 
+
+
+nome = input("Digite o nome do aluno para lançar a frequência: ")
+
+
+if nome in dicionario_aluno["nome"]:
+    for i in range(5): #verificar outra forma de computar a falta sem pedir 5 vezes
+      chamada = int(input(f"{i + 1} Digite (1) para presença e (0) para falta: "))  #tranformar no sistema 1 para P e 0 para f
+      dicionario_aluno["chamadas"]["chamada"].append(chamada)
+      if chamada == 1:
+                 print("presente")
+                 contador_p +=1
+
+      elif chamada == 0:
+           print("Faltou")
+           contador_f +=1
+else:
+  print("Digite o nome e verifique novamente!")
+
+
+
+print("\n --- Relatório final --- \n")
+
+#Maior problema em computar a frequência
+
+
+for nome_n in dicionario_aluno:
+    for chama in dicionario_aluno:
+    print(nome, chamada)
+
+ #print("Aluno: ", nomes)
+
+#for chamada in dicionario_aluno["chamadas"]["chamada"]:
+ #print("Chamada: ", nome, chamada)
+
+
+
+
+
+
+
+
+
